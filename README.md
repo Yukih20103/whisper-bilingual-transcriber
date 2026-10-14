@@ -119,5 +119,3 @@ The tool is currently focused on Chinese/English audios. Other language pairs ma
 This project is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** license.
 
 **You are free to use this project for educational, non-profit, and personal purposes.**
-
-See the [LICENSE](LICENSE) file for details.
