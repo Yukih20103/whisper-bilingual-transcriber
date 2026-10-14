@@ -62,7 +62,7 @@ The application window will open.
 
 ### GUI Selections
 
-![GUI Screenshot](images/whisper-transcriber.png)
+![GUI Screenshot](docs/images/whisper-transcriber.png)
 
 #### 1. Audio or Video File 
 The target audio / video for transcription. Support .wav files for audio and .mp4 files for video.
