@@ -192,7 +192,7 @@ def main(page: ft.Page):
             one_speaker,
             traditional_chinese,
         )
-            result_text.value = f"✅ Done! Output saved to {final_path}."
+            result_text.value = f"✅ Done! Output saved."
             result_text.color = "green"
         except Exception as ex:
             result_text.value = f"❌ Error: {ex}"

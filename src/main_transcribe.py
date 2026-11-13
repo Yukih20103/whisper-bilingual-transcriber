@@ -26,10 +26,7 @@ def process_video(video_path: str, config=None):
     
     # Extract Audio
     audio_processor = AudioProcessor(config)
-    audio_path = audio_processor.extract_audio_from_video(
-        video_path,
-        os.path.join(config.output_dir, f"{base_name}_audio.wav")
-    )
+    audio_path = audio_processor.get_or_extract_audio(video_path)
     
     # Video Preprocessing
     if config.one_speaker_flag:
@@ -91,7 +88,6 @@ def process_video(video_path: str, config=None):
 def load_config_and_process_transcribe(source_path, output_path, term_file_path, model,
                   use_finetuned, one_speaker, traditional_chinese):
 
-    print(use_finetuned)
     user_overrides = {
         "output_dir":output_path, 
         "term_reference_dir":term_file_path, 

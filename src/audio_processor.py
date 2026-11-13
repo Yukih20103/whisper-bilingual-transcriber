@@ -38,23 +38,28 @@ class AudioProcessor:
         }]
         return segments
 
-    def extract_audio_from_video(self, input_path: str, audio_path: str = None) -> str:
+    def get_or_extract_audio(self, input_path: str, audio_path: str = None) -> str:
         """
-            Extract audio from the video and save it to a audio path
+            Extract audio from the video and save it to a audio path. 
+            If the input is already an audio, return the same path
             Args:
-                input_path: path of a video
+                input_path: path of a video/audio
                 audio_path: output path of the extracted audio
-                    
+                                
             Returns:
-                str: a audio path extracted from the video
+                str: a audio path extracted from the video or the original audio path
         """
+        if Path(input_path).suffix.lower() == '.wav':
+            print(f"Input is already a WAV file, no extraction needed.")
+            return input_path
+            
         if audio_path is None:
-            audio_path = Path(input_path).stem + '_audio.wav'
             input_dir = Path(input_path).parent
             audio_path = str(input_dir / (Path(input_path).stem + '_audio.wav'))
-
+            print("audio path: ", audio_path)
+    
         print(f"Extracting audio: {Path(input_path).name} -> {Path(audio_path).name}")
-
+    
         cmd = [
             'ffmpeg', '-i', input_path,
             '-acodec', 'pcm_s16le',
@@ -62,7 +67,7 @@ class AudioProcessor:
             '-ac', '1',
             '-y', audio_path
         ]
-    
+        
         subprocess.run(cmd, capture_output=True, check=True)
         info = sf.info(audio_path)
         print(f" Sample size: {info.samplerate} Hz, Channels: {info.channels}")
