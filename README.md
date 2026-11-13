@@ -31,22 +31,47 @@ Existing Whisper models detect only one language per video, show low accuracy on
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.10 or higher
 - `ffmpeg` installed and available in your system PATH
-- (Optional but recommended) Intel XPU for faster transcription. CPU works too but takes much more time.
 
 ---
 
 ### Install Dependencies
 
-Clone the repository and install the required packages:
+Clone the repository:
 
 ```bash
 git clone https://github.com/Yukih20103/whisper-bilingual-transcriber.git
 cd whisper-bilingual-transcriber
-pip install -r requirements.txt
 ```
 
+Step 1: Install PyTorch for your hardware.
+
+For Intel XPU users (Recommended):
+
+```bash
+pip install torch==2.8.0+xpu torchvision==0.23.0+xpu torchaudio==2.8.0+xpu --index-url https://download.pytorch.org/whl/xpu
+```
+Note: Ensure your Intel GPU drivers are installed and up to date. Do not install CUDA wheels.
+
+For CPU users:
+
+```bash
+pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+For NVIDIA GPU (CUDA) users:
+
+```bash
+pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu126
+```
+Note: For other CUDA versions, replace cu126 with cu118, cu128, etc., as per PyTorch's official instructions.
+
+Step 2: Install the remaining dependencies.
+
+```bash
+pip install -r requirements.txt
+```
 Note: diarize may require additional system libraries. Please refer to its documentation if installation fails.
 
 ---
